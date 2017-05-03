@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SFML.Graphics;
 using SFML.Window;
+using SFML.System;
 
 namespace Tama
 {
@@ -22,10 +23,12 @@ namespace Tama
         public static bool isGameWindowVisible;
         public static bool isMenuWindowVisible;
 
+        public static float elapsedTime = 0;
+
         static void Main(string[] args)
         {
             menuWindow = new RenderWindow(new SFML.Window.VideoMode(400, 650), "Tamagochi by_XLY");
-            gameWindow = new RenderWindow(new SFML.Window.VideoMode(1200, 800), "Tamagochi by_XLY");
+            gameWindow = new RenderWindow(new SFML.Window.VideoMode(800, 600), "Tamagochi by_XLY");
             menuWindow.SetVerticalSyncEnabled(true);
             gameWindow.SetVerticalSyncEnabled(true);
 
@@ -38,22 +41,25 @@ namespace Tama
             isGameWindowVisible = false;
             isMenuWindowVisible = true;
             
-            
-
             Content.Load();
 
             Menu = new Menu();
             Game = new Game();
 
+            Clock clock = new Clock(), actionCooldown = new Clock();
+
             while (menuWindow.IsOpen) {
+
+                elapsedTime = clock.ElapsedTime.AsMilliseconds();
+                clock.Restart();
 
                 if (isMenuWindowVisible) {
 
                     menuWindow.DispatchEvents();
 
-                    if (Mouse.IsButtonPressed(Mouse.Button.Left))
+                    if (Mouse.IsButtonPressed(Mouse.Button.Left) && actionCooldown.ElapsedTime.AsMilliseconds() > 300)
                     {
-
+                        actionCooldown.Restart();
                         Menu.Click();
                     }
 
@@ -68,8 +74,9 @@ namespace Tama
 
                     gameWindow.DispatchEvents();
 
-                    if (Mouse.IsButtonPressed(Mouse.Button.Left))
+                    if (Mouse.IsButtonPressed(Mouse.Button.Left) && actionCooldown.ElapsedTime.AsMilliseconds() > 300)
                     {
+                        actionCooldown.Restart();
                         Game.Click();
                     }
 
