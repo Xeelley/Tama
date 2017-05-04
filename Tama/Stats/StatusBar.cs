@@ -10,7 +10,7 @@ namespace Tama.Stats
 {
     class StatusBar
     {
-        Vector2f POSIOTION = new Vector2f(190, 40);
+        Vector2f POSIOTION = new Vector2f(210, 35);
         Font font;
         Text happinessValue, purityValue, energyValue, creatureName;
         List<Sprite> icons;
@@ -28,20 +28,21 @@ namespace Tama.Stats
             icons[2].Position = new Vector2f(390, 30) + POSIOTION;
 
             happinessValue = new Text(Math.Round(CurrentCreature.creature.Happiness).ToString(), font, 30);
-            purityValue = new Text(Math.Round(CurrentCreature.creature.Purity).ToString(), font, 30);
-            energyValue = new Text(Math.Round(CurrentCreature.creature.Energy).ToString(), font, 30);
+            purityValue = new Text(Math.Round(CurrentCreature.creature.Energy).ToString(), font, 30);
+            energyValue = new Text(Math.Round(CurrentCreature.creature.Purity).ToString(), font, 30);
             creatureName = new Text(CurrentCreature.creature.name, font, 36);
             happinessValue.Color = purityValue.Color = energyValue.Color = creatureName.Color = Color.Black;
             happinessValue.Position = new Vector2f(140, 28) + POSIOTION;
             purityValue.Position = new Vector2f(290, 28) + POSIOTION;
             energyValue.Position = new Vector2f(440, 28) + POSIOTION;
-            creatureName.Position = new Vector2f(280, 10);
+            creatureName.Position = new Vector2f(300, 10);
         }
 
         public void Update() {
             happinessValue.DisplayedString = Math.Round(CurrentCreature.creature.Happiness).ToString();
-            purityValue.DisplayedString = Math.Round(CurrentCreature.creature.Purity).ToString();
-            energyValue.DisplayedString = Math.Round(CurrentCreature.creature.Energy).ToString();
+            purityValue.DisplayedString = Math.Round(CurrentCreature.creature.Energy).ToString();
+            energyValue.DisplayedString = Math.Round(CurrentCreature.creature.Purity).ToString();
+            creatureName.DisplayedString = CurrentCreature.creature.name;
         }
 
         public void Draw() {

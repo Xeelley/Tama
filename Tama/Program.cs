@@ -15,7 +15,7 @@ namespace Tama
         private static RenderWindow menuWindow;
 
         public static RenderWindow MenuWindow { get { return menuWindow; } }
-        public static RenderWindow GameWindow { get { return gameWindow; } }
+        public static RenderWindow GameWindow { get { return gameWindow; } set { gameWindow = value; } }
 
         public static Game Game { private set; get; }
         public static Menu Menu { private set; get; }
@@ -45,6 +45,8 @@ namespace Tama
 
             Menu = new Menu();
             Game = new Game();
+
+            Game.Fake();
 
             Clock clock = new Clock(), actionCooldown = new Clock();
 

@@ -64,6 +64,7 @@
     <Compile Include="Actions\ActionBar.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="Content.cs" />
+    <Compile Include="Creatures\Collection.cs" />
     <Compile Include="Creatures\Creature.cs" />
     <Compile Include="Creatures\Showcase.cs" />
     <Compile Include="Game.cs" />

@@ -39,16 +39,21 @@ namespace Tama.Actions
 
         public void Click()
         {
-            //Console.WriteLine(Mouse.GetPosition(Program.GameWindow).ToString());
-
-            List<buttonEvent> events = new List<buttonEvent>() { new buttonEvent(Feed), new buttonEvent(Walk), new buttonEvent(Sleep),
-                                                                 new buttonEvent(Wash), new buttonEvent(Special1), new buttonEvent(Special2)};
-            for (int i = 0; i < actionButtons.Count; i++)
+            if (CurrentCreature.creature.isAlive)
             {
-                if (actionButtons[i].isContainMouse(Program.GameWindow))
+
+                List<buttonEvent> events = new List<buttonEvent>() { new buttonEvent(Feed), new buttonEvent(Walk), new buttonEvent(Sleep),
+                                                                 new buttonEvent(Wash), new buttonEvent(Special1), new buttonEvent(Special2)};
+                for (int i = 0; i < actionButtons.Count; i++)
                 {
-                    events[i]();
+                    if (actionButtons[i].isContainMouse(Program.GameWindow))
+                    {
+                        events[i]();
+                    }
                 }
+            }
+            else {
+                Program.Game.logger.NewMessage(CurrentCreature.creature.name + " unavailable!");
             }
         }
 
@@ -66,6 +71,8 @@ namespace Tama.Actions
             Program.Game.logger.NewMessage(CurrentCreature.creature.name + " was fed:\n" +
                                            "+" + Math.Round(happinessChange) + " Happiness\n" +
                                            "+" + Math.Round(energyChange) + " Energy");
+
+            Program.Game.TotalScore += (int)(happinessChange + energyChange);
         }
 
         private void Walk() {
@@ -83,6 +90,8 @@ namespace Tama.Actions
                                            "+" + Math.Round(happinessChange) + " Happiness\n" +
                                            "-" + Math.Round(energyChange) + " Energy\n" + 
                                            "-" + Math.Round(purifyChange) + " Purity");
+
+            Program.Game.TotalScore += (int)(happinessChange - 0.5f * energyChange - 0.5f * purifyChange);
         }
 
         private void Sleep() {
@@ -100,6 +109,8 @@ namespace Tama.Actions
                                            "+" + Math.Round(happinessChange) + " Happiness\n" +
                                            "+" + Math.Round(energyChange) + " Energy\n" +
                                            "-" + Math.Round(purifyChange) + " Purity");
+
+            Program.Game.TotalScore += (int)(happinessChange + energyChange - 0.5f * purifyChange);
         }
 
         private void Wash() {
@@ -114,6 +125,8 @@ namespace Tama.Actions
             Program.Game.logger.NewMessage("You washed " + CurrentCreature.creature.name + ":\n" +
                                            "-" + Math.Round(energyChange) + " Energy\n" +
                                            "+" + Math.Round(purifyChange) + " Purity");
+
+            Program.Game.TotalScore += (int)(purifyChange - 0.2f * energyChange);
         }
 
         private void Special1() { }

@@ -37,22 +37,24 @@ namespace Tama
 
     class Creature 
     {
-        RenderWindow TARGET_WONDOW = Program.GameWindow;
+        RenderWindow TARGET_WINDOW = Program.GameWindow;
 
         public Sprite sprite;
 
-        public string name; 
+        public string name;
+        public bool isAlive;
 
         public float Happiness, Purity, Energy;
         public CreatureRandomBreackets creatureRandomBreackets = new CreatureRandomBreackets(6, 2, 4, 1, 5, 2, 6, 2);
         public CreatureSpeedBreakets creatureSpeedBreakets = new CreatureSpeedBreakets(1f, 1.2f, 1.1f);
 
-        public Creature(string name, int posX, int posY, float Happiness, float Purity, float Energy) {
+        public Creature(string name, Texture texture, float Happiness, float Purity, float Energy) {
             this.name = name;
+            isAlive = true;
+
             sprite = new Sprite();
-            sprite.Texture = Content.CMonsterCat.texture;
-            sprite.TextureRect = new IntRect(0, 0, Content.CMonsterCat.width, Content.CMonsterCat.height);
-            sprite.Position = new SFML.System.Vector2f(posX, posY);
+            sprite.Texture = texture;
+            sprite.TextureRect = new IntRect(0, 0, 400, 400);
 
             this.Happiness = Happiness;
             this.Purity = Purity;
@@ -61,19 +63,27 @@ namespace Tama
 
         public void Update() {
 
-            float elapsedTime = Program.elapsedTime;
+            if (isAlive) {
+                float elapsedTime = Program.elapsedTime;
 
-            if (Happiness >= 0) Happiness -= elapsedTime * 0.001f * this.creatureSpeedBreakets.HappinessIndex;
-            else Happiness = 0;
-            if (Purity >= 0) Purity -= elapsedTime * 0.001f * this.creatureSpeedBreakets.PurityIndex;
-            else Purity = 0;
-            if (Energy >= 0) Energy -= elapsedTime * 0.001f * this.creatureSpeedBreakets.EnergyIndex;
-            else Energy = 0;
+                if (Happiness >= 0) Happiness -= elapsedTime * 0.001f * this.creatureSpeedBreakets.HappinessIndex;
+                else Happiness = 0;
+                if (Purity >= 0) Purity -= elapsedTime * 0.001f * this.creatureSpeedBreakets.PurityIndex;
+                else Purity = 0;
+                if (Energy >= 0) Energy -= elapsedTime * 0.001f * this.creatureSpeedBreakets.EnergyIndex;
+                else Energy = 0;
+            }
+
+            if (Happiness <= 0 || Purity <= 0 || Energy <= 0) {
+                isAlive = false;
+                sprite.Texture = Content.UnavailableSprite;
+                sprite.TextureRect = new IntRect(0, 0, 400, 400);
+            }
         }
 
         public void Draw()
         {
-            TARGET_WONDOW.Draw(sprite);
+            TARGET_WINDOW.Draw(sprite);
         }
     }
 }

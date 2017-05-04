@@ -43,13 +43,15 @@ namespace Tama
             }
         }
 
-        private void LoadGameButtonEvent() { }
-
-        private void StartGameButtonEvent() {
+        private void LoadGameButtonEvent() {
             Program.GameWindow.SetVisible(true);
             Program.isGameWindowVisible = true;
             Program.MenuWindow.SetVisible(false);
             Program.isMenuWindowVisible = false;
+        }
+
+        private void StartGameButtonEvent() {
+            Program.GameWindow = new RenderWindow(new SFML.Window.VideoMode(800, 600), "Tamagochi by_XLY");
         }
 
         private void OptionsButtonEvent() { }
