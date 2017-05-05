@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Tama
 {
-    class Menu
+    class Menu : WindowElement
     {
         const int ButtonMargin = 50, ButtonHeight = 100, ButtonWidth = 300, ButtonsAmount = 4;
         RenderWindow BINDED_WINDOW = Program.MenuWindow;
@@ -51,10 +51,15 @@ namespace Tama
         }
 
         private void StartGameButtonEvent() {
-            Program.GameWindow = new RenderWindow(new SFML.Window.VideoMode(800, 600), "Tamagochi by_XLY");
+            LoadGameButtonEvent();
         }
 
-        private void OptionsButtonEvent() { }
+        private void OptionsButtonEvent() {
+            Program.SettingsWindow.SetVisible(true);
+            Program.isSettingWindowVisible = true;
+            Program.MenuWindow.SetVisible(false);
+            Program.isMenuWindowVisible = false;
+        }
 
         private void ExitButtonEvent() {
             Program.MenuWindow.Close();

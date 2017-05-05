@@ -27,7 +27,7 @@ namespace Tama
         static public short index = 0;
     }
 
-    class Game
+    class Game : WindowElement
     {
         RenderWindow BINDED_WINDOW = Program.GameWindow;
         ActionBar actionBar;

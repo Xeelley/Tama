@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
+using Tama.Options;
 
 namespace Tama
 {
@@ -13,22 +14,27 @@ namespace Tama
     {
         private static RenderWindow gameWindow;
         private static RenderWindow menuWindow;
+        private static RenderWindow settingsWindow;
 
         public static RenderWindow MenuWindow { get { return menuWindow; } }
         public static RenderWindow GameWindow { get { return gameWindow; } set { gameWindow = value; } }
+        public static RenderWindow SettingsWindow { get { return settingsWindow; } }
 
         public static Game Game { private set; get; }
         public static Menu Menu { private set; get; }
+        public static Settings Settings { private set; get; }
 
         public static bool isGameWindowVisible;
         public static bool isMenuWindowVisible;
+        public static bool isSettingWindowVisible;
 
         public static float elapsedTime = 0;
 
         static void Main(string[] args)
         {
-            menuWindow = new RenderWindow(new SFML.Window.VideoMode(400, 650), "Tamagochi by_XLY");
-            gameWindow = new RenderWindow(new SFML.Window.VideoMode(800, 600), "Tamagochi by_XLY");
+            menuWindow = new RenderWindow(new VideoMode(400, 650), "Tamagochi by_XLY");
+            gameWindow = new RenderWindow(new VideoMode(800, 600), "Tamagochi by_XLY");
+            settingsWindow = new RenderWindow(new VideoMode(400, 650), "Settings");
             menuWindow.SetVerticalSyncEnabled(true);
             gameWindow.SetVerticalSyncEnabled(true);
 
@@ -38,15 +44,18 @@ namespace Tama
             GameWindow.Resized += gameWindowResized;
 
             gameWindow.SetVisible(false);
+            settingsWindow.SetVisible(false);
             isGameWindowVisible = false;
+            isSettingWindowVisible = false;
             isMenuWindowVisible = true;
             
             Content.Load();
 
             Menu = new Menu();
             Game = new Game();
+            Settings = new Settings();
 
-            Game.Fake();
+            //Game.Fake();
 
             Clock clock = new Clock(), actionCooldown = new Clock();
 
@@ -87,6 +96,23 @@ namespace Tama
                     Game.Draw();
 
                     gameWindow.Display();
+                }
+
+                if (isSettingWindowVisible) {
+
+                    settingsWindow.DispatchEvents();
+
+                    if (Mouse.IsButtonPressed(Mouse.Button.Left) && actionCooldown.ElapsedTime.AsMilliseconds() > 300)
+                    {
+                        actionCooldown.Restart();
+                        Settings.Click();
+                    }
+
+                    Settings.Update();
+                    settingsWindow.Clear(Color.White);
+                    Settings.Draw();
+
+                    settingsWindow.Display();
                 }
             }
         }

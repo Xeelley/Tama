@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Tama.Actions
 {
-    class ActionBar
+    class ActionBar 
     {
         Vector2f ACTION_BAR_POSITION = new Vector2f(280, 510);
 
