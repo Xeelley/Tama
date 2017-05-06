@@ -60,6 +60,9 @@ namespace Tama
         public static textureInfo CollectionBackGround, GameOverBackGround;
         public static Texture UnavailableSprite, UnavailableMinSprite;
 
+        //Setting files
+        public static string settingFile;
+
         public static void Load() {
 
             MontserratFont = new Font(FONTS_DIR + "\\Montserrat-Regular.ttf");
@@ -92,6 +95,9 @@ namespace Tama
 
             UnavailableSprite = new Texture(TEXTURES_DIR + "\\UnavailableSprite.png");
             UnavailableMinSprite = new Texture(TEXTURES_DIR + "\\UnavailableMinSprite.png");
+
+
+            settingFile = "..\\Content\\Settings.txt";
         }
 
     }

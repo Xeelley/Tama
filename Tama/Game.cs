@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Tama.Actions;
 using Tama.Creatures;
 using Tama.Log;
+using Tama.Options;
 using Tama.Stats;
 
 namespace Tama
@@ -175,6 +176,13 @@ namespace Tama
             BINDED_WINDOW.Draw(GameOverBackGround);
             BINDED_WINDOW.Draw(GameOverText);
             BINDED_WINDOW.Draw(FinalScoreText);
+
+            if (TotalScore > SettingList.HighScore) {
+                SettingList.HighScore = TotalScore;
+            }
+            //SettingList.games++;  
+            ///TODO: counted every tick. Need to fix it.
+            SettingList.UpdateSettings();
         }
 
         public void Fake() {

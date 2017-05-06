@@ -55,6 +55,8 @@ namespace Tama
             Game = new Game();
             Settings = new Settings();
 
+            SettingList.DownloadSettings();
+
             //Game.Fake();
 
             Clock clock = new Clock(), actionCooldown = new Clock();

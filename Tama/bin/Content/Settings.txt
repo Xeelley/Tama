@@ -1,0 +1,3 @@
+[SOUND]=False
+[GAMES]=0
+[HIGHSCORE]=0
