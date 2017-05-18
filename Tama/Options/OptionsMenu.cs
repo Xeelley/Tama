@@ -43,6 +43,71 @@ namespace Tama.Options
 
             }
         }
+
+        static public void SaveGame(int score)
+        {
+            using (System.IO.StreamWriter writer = new System.IO.StreamWriter(Content.saveFile, false))
+            {
+                writer.WriteLine("Score=" + score);
+
+                List<Creature> creatures = new List<Creature> { CurrentCreature.Begemoth,  CurrentCreature.Elephant,
+                CurrentCreature.Elk, CurrentCreature.Owl, CurrentCreature.Pig, CurrentCreature.Pinguin,
+                CurrentCreature.Sheep, CurrentCreature.Zebra };
+
+                foreach (Creature cr in creatures) {
+
+                    writer.WriteLine("[" + cr.name + "]");
+                    writer.WriteLine("Happiness=" + cr.Happiness);
+                    writer.WriteLine("Energy=" + cr.Energy);
+                    writer.WriteLine("Purity=" + cr.Purity);
+                }
+            }
+        }
+
+        static public void LoadGame() {
+
+            using (System.IO.StreamReader reader = new System.IO.StreamReader(Content.saveFile))
+            {
+                int Score;
+                string[] ReaderString;
+
+                ReaderString = reader.ReadLine().Split('=');
+                Score = Convert.ToInt32(ReaderString[1]);
+
+                List<Creature> creatures = new List<Creature> { CurrentCreature.Begemoth,  CurrentCreature.Elephant,
+                CurrentCreature.Elk, CurrentCreature.Owl, CurrentCreature.Pig, CurrentCreature.Pinguin,
+                CurrentCreature.Sheep, CurrentCreature.Zebra };
+
+                foreach (Creature cr in creatures) {
+
+                    ReaderString = reader.ReadLine().Split('=');
+                    ReaderString = reader.ReadLine().Split('=');
+                    cr.Happiness = (float)(Convert.ToDouble(ReaderString[1]));
+                    ReaderString = reader.ReadLine().Split('=');
+                    cr.Energy = (float)(Convert.ToDouble(ReaderString[1]));
+                    ReaderString = reader.ReadLine().Split('=');
+                    cr.Purity = (float)(Convert.ToDouble(ReaderString[1]));
+                }
+
+                reader.Close();
+
+                Program.Game.TotalScore = Score;
+            }
+        }
+
+        static public void NewGame()
+        {
+            CurrentCreature.Begemoth.SetStats(120, 60, 70);
+            CurrentCreature.Elephant.SetStats(110, 60, 70);
+            CurrentCreature.Elk.SetStats(80, 100, 80);
+            CurrentCreature.Owl.SetStats(110, 120, 110);
+            CurrentCreature.Pig.SetStats(140, 30, 100);
+            CurrentCreature.Pinguin.SetStats(100, 110, 90);
+            CurrentCreature.Sheep.SetStats(80, 60, 120);
+            CurrentCreature.Zebra.SetStats(100, 100, 100);
+
+            Program.Game.TotalScore = 0;
+        }
     }
 
     class Settings : WindowElement

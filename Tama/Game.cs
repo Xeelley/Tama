@@ -141,7 +141,11 @@ namespace Tama
                 }
             }
             else {
-                if (gameCloseCooldown.ElapsedTime.AsSeconds() >= 3) BackToMenuButtonEvent();
+                if (gameCloseCooldown.ElapsedTime.AsSeconds() >= 3) {
+
+                    SettingList.games++;
+                    BackToMenuButtonEvent();
+                };
             }
         }
 
@@ -157,7 +161,10 @@ namespace Tama
             isCollectionOpen = !isCollectionOpen;
         }
 
-        private void Save() { }
+        private void Save() {
+
+            SettingList.SaveGame(this.TotalScore);
+        }
 
         private void GameOver() {
 

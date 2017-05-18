@@ -62,6 +62,7 @@ namespace Tama
 
         //Setting files
         public static string settingFile;
+        public static string saveFile;
 
         public static void Load() {
 
@@ -98,6 +99,7 @@ namespace Tama
 
 
             settingFile = "..\\Content\\Settings.txt";
+            saveFile =    "..\\Content\\Save0.txt";
         }
 
     }

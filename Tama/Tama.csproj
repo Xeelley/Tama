@@ -68,6 +68,7 @@
     <Compile Include="Creatures\Collection.cs" />
     <Compile Include="Creatures\Creature.cs" />
     <Compile Include="Creatures\Showcase.cs" />
+    <Compile Include="EasterEggs.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Log\Logger.cs" />
     <Compile Include="Menu.cs" />

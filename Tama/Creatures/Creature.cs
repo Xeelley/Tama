@@ -85,5 +85,12 @@ namespace Tama
         {
             TARGET_WINDOW.Draw(sprite);
         }
+
+        public void SetStats(int Happiness, int Energy, int Purity) {
+
+            this.Happiness = Happiness;
+            this.Energy = Energy;
+            this.Purity = Purity;
+        }
     }
 }

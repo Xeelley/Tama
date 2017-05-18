@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tama.Options;
 
 namespace Tama
 {
@@ -44,17 +45,25 @@ namespace Tama
         }
 
         private void LoadGameButtonEvent() {
+
             Program.GameWindow.SetVisible(true);
             Program.isGameWindowVisible = true;
             Program.MenuWindow.SetVisible(false);
             Program.isMenuWindowVisible = false;
+            SettingList.LoadGame();
         }
 
         private void StartGameButtonEvent() {
-            LoadGameButtonEvent();
+
+            Program.GameWindow.SetVisible(true);
+            Program.isGameWindowVisible = true;
+            Program.MenuWindow.SetVisible(false);
+            Program.isMenuWindowVisible = false;
+            SettingList.NewGame();
         }
 
         private void OptionsButtonEvent() {
+
             Program.SettingsWindow.SetVisible(true);
             Program.isSettingWindowVisible = true;
             Program.MenuWindow.SetVisible(false);
@@ -62,6 +71,7 @@ namespace Tama
         }
 
         private void ExitButtonEvent() {
+
             Program.MenuWindow.Close();
             
         }

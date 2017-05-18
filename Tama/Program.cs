@@ -23,6 +23,7 @@ namespace Tama
         public static Game Game { private set; get; }
         public static Menu Menu { private set; get; }
         public static Settings Settings { private set; get; }
+        public static EasterEggs EasterEggs { private set; get; }
 
         public static bool isGameWindowVisible;
         public static bool isMenuWindowVisible;
@@ -54,6 +55,7 @@ namespace Tama
             Menu = new Menu();
             Game = new Game();
             Settings = new Settings();
+            EasterEggs = new EasterEggs();
 
             SettingList.DownloadSettings();
 
@@ -93,7 +95,14 @@ namespace Tama
                         Game.Click();
                     }
 
+                    if (Keyboard.IsKeyPressed(Keyboard.Key.A) ||
+                        Keyboard.IsKeyPressed(Keyboard.Key.S) ||
+                        Keyboard.IsKeyPressed(Keyboard.Key.D)) {
+                        EasterEggs.New();
+                    }
+
                     Game.Update();
+                    EasterEggs.Check();
                     gameWindow.Clear(Color.White);
                     Game.Draw();
 
