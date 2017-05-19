@@ -129,7 +129,181 @@ namespace Tama.Actions
             Program.Game.TotalScore += (int)(purifyChange - 0.2f * energyChange);
         }
 
-        private void Special1() { }
-        private void Special2() { }
+        private void Special1() {
+
+            switch (CurrentCreature.creature.name) {
+
+                case "Begemoth":
+                    {
+                        CurrentCreature.creature.Energy += 10;
+                        CurrentCreature.creature.Purity -= 7;
+                        Program.Game.logger.NewMessage(CurrentCreature.creature.name + " eats a huge\n" +
+                                                       "barrel of honey!\n" + 
+                                                       "-7 Purity\n" +
+                                                       "+10 Energy");
+                        Program.Game.TotalScore += 5;
+                        break;
+                    };
+                case "Elephant":
+                    {
+                        CurrentCreature.creature.Happiness += 5;
+                        CurrentCreature.creature.Purity += 5;
+                        CurrentCreature.creature.Energy += 5;
+                        Program.Game.logger.NewMessage(CurrentCreature.creature.name + " is big. Realy big.\n" +
+                                                       "+5 to all stats");
+                        Program.Game.TotalScore += 15;
+                        break;
+                    };
+                case "Elk":
+                    {
+                        CurrentCreature.creature.Happiness += 7;
+                        Program.Game.logger.NewMessage("Look at those horhs!\n" +
+                                                       CurrentCreature.creature.name + " is exactly happy!\n" + 
+                                                       "+7 Happiness");
+                        Program.Game.TotalScore += 7;
+                        break;
+                    };
+                case "Owl":
+                    {
+                        CurrentCreature.creature.Energy += 5;
+                        Program.Game.logger.NewMessage("Night without sleep?\n" + 
+                                                       "It's not a problem for " + CurrentCreature.creature.name + "!\n" +
+                                                       "+5 Enegry");
+                        Program.Game.TotalScore += 5;
+                        break;
+                    };
+                case "Pig":
+                    {
+                        CurrentCreature.creature.Purity -= 15;
+                        CurrentCreature.creature.Happiness += 20;
+                        Program.Game.logger.NewMessage(CurrentCreature.creature.name + " finds an apple in a puddle!\n" +
+                                                       "-15 Purity\n" +
+                                                       "+20 Happiness");
+                        Program.Game.TotalScore += 9;
+                        break;
+                    };
+                case "Pinguin":
+                    {
+                        CurrentCreature.creature.Purity += 10;
+                        Program.Game.logger.NewMessage(CurrentCreature.creature.name + " dives into the water!\n" +
+                                                       "+10 Purity");
+                        Program.Game.TotalScore += 10;
+                        break;
+                    };
+                case "Sheep":
+                    {
+                        Program.Game.logger.NewMessage(CurrentCreature.creature.name + "^^\n" +
+                                                       "Pretty but useless.\n" +
+                                                       "Just +10 points");
+                        Program.Game.TotalScore += 10;
+                        break;
+                    };
+                case "Zebra":
+                    {
+                        CurrentCreature.creature.Happiness += 3;
+                        CurrentCreature.creature.Energy += 4;
+                        Program.Game.logger.NewMessage("The perfect combination\n" +
+                                                       "of white & black.\n" +
+                                                       "+3 Happiness\n" +
+                                                       "+4 Energy");
+                        Program.Game.TotalScore += 7;
+                        break;
+                    };
+            }
+        }
+        private void Special2() {
+
+            Random rand = new Random();
+
+            if (rand.Next(0, 10) == 3)
+            {
+
+                switch (CurrentCreature.creature.name)
+                {
+
+                    case "Begemoth":
+                        {
+                            CurrentCreature.creature.Energy += 30;
+                            CurrentCreature.creature.Purity -= 10;
+                            Program.Game.logger.NewMessage(CurrentCreature.creature.name + " eats a huge\n" +
+                                                           "watermelon!\n" +
+                                                           "-10 Purity\n" +
+                                                           "+30 Energy");
+                            Program.Game.TotalScore += 25;
+                            break;
+                        };
+                    case "Elephant":
+                        {
+                            CurrentCreature.creature.Happiness += 20;
+                            CurrentCreature.creature.Purity += 20;
+                            CurrentCreature.creature.Energy += 20;
+                            Program.Game.logger.NewMessage(CurrentCreature.creature.name + " is the biggest!.\n" +
+                                                           "+20 to all stats");
+                            Program.Game.TotalScore += 60;
+                            break;
+                        };
+                    case "Elk":
+                        {
+                            CurrentCreature.creature.Happiness += 45;
+                            Program.Game.logger.NewMessage("*AMAZING HORNS*!\n" +
+                                                           CurrentCreature.creature.name + " is exactly happy!\n" +
+                                                           "+45 Happiness");
+                            Program.Game.TotalScore += 45;
+                            break;
+                        };
+                    case "Owl":
+                        {
+                            CurrentCreature.creature.Energy += 50;
+                            Program.Game.logger.NewMessage("Week without sleep maybe?\n" +
+                                                           "It's not a problem for " + CurrentCreature.creature.name + "!\n" +
+                                                           "+50 Enegry");
+                            Program.Game.TotalScore += 50;
+                            break;
+                        };
+                    case "Pig":
+                        {
+                            CurrentCreature.creature.Purity -= 15;
+                            CurrentCreature.creature.Happiness += 70;
+                            Program.Game.logger.NewMessage(CurrentCreature.creature.name + " finds a diamond in a puddle!\n" +
+                                                           "-15 Purity\n" +
+                                                           "+70 Happiness");
+                            Program.Game.TotalScore += 62;
+                            break;
+                        };
+                    case "Pinguin":
+                        {
+                            CurrentCreature.creature.Purity += 20;
+                            CurrentCreature.creature.Happiness += 20;
+                            Program.Game.logger.NewMessage(CurrentCreature.creature.name + " dives into the water!\n" +
+                                                           "+20 Purity\n" +
+                                                           "+20 Happiness");
+                            Program.Game.TotalScore += 40;
+                            break;
+                        };
+                    case "Sheep":
+                        {
+                            Program.Game.logger.NewMessage(CurrentCreature.creature.name + "^^\n" +
+                                                           "Just pretty.\n" +
+                                                           "+100 points");
+                            Program.Game.TotalScore += 100;
+                            break;
+                        };
+                    case "Zebra":
+                        {
+                            CurrentCreature.creature.Happiness += 22;
+                            CurrentCreature.creature.Energy += 22;
+                            Program.Game.logger.NewMessage("The perfect creature.\n" +
+                                                           "+22 Happiness\n" +
+                                                           "+22 Energy");
+                            Program.Game.TotalScore += 44;
+                            break;
+                        };
+                }
+            }
+            else {
+                Program.Game.logger.NewMessage("Bad luck :(");
+            }
+            
+        }
     }
 }
