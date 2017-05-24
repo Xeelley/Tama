@@ -1,8 +1,8 @@
-Score=245
+Score=24
 [Begemoth]
-Happiness=183.5012
-Energy=198.4563
-Purity=45.40553
+Happiness=70.6701
+Energy=10.83186
+Purity=-0.0007856374
 [Elephant]
 Happiness=110
 Energy=60
@@ -20,9 +20,9 @@ Happiness=140
 Energy=30
 Purity=100
 [Pinguin]
-Happiness=100
-Energy=110
-Purity=90
+Happiness=25.00325
+Energy=27.49617
+Purity=-0.003407531
 [Sheep]
 Happiness=80
 Energy=60

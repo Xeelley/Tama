@@ -64,6 +64,9 @@ namespace Tama
         public static string settingFile;
         public static string saveFile;
 
+        //Icons
+        public static Texture GCN;
+
         public static void Load() {
 
             MontserratFont = new Font(FONTS_DIR + "\\Montserrat-Regular.ttf");
@@ -100,6 +103,8 @@ namespace Tama
 
             settingFile = "..\\Content\\Settings.txt";
             saveFile =    "..\\Content\\Save0.txt";
+
+            GCN = new Texture(TEXTURES_DIR + "\\gcn.png");
         }
 
     }

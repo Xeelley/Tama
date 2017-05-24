@@ -19,7 +19,8 @@ namespace Tama
         public Menu() {
             buttons = new List<Button>();
             for (int i = 0; i < ButtonsAmount; i++) {
-                buttons.Add(new Button(Content.MenuButtons.texture, ButtonMargin, (ButtonMargin + ButtonHeight) * i + ButtonMargin, ButtonWidth,  ButtonHeight, 0, ButtonHeight * i));
+                buttons.Add(new Button(Content.MenuButtons.texture, ButtonMargin, (ButtonMargin + ButtonHeight) * 
+                i + ButtonMargin, ButtonWidth,  ButtonHeight, 0, ButtonHeight * i));
             }
         }
 

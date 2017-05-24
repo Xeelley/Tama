@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tama.Parents;
 
 namespace Tama.Stats
 {
-    class StatusBar
+    class StatusBar : GameBar
     {
         Vector2f POSIOTION = new Vector2f(210, 35);
         Font font;
@@ -38,14 +39,14 @@ namespace Tama.Stats
             creatureName.Position = new Vector2f(300, 10);
         }
 
-        public void Update() {
+        public override void Update() {
             happinessValue.DisplayedString = Math.Round(CurrentCreature.creature.Happiness).ToString();
             purityValue.DisplayedString = Math.Round(CurrentCreature.creature.Energy).ToString();
             energyValue.DisplayedString = Math.Round(CurrentCreature.creature.Purity).ToString();
             creatureName.DisplayedString = CurrentCreature.creature.name;
         }
 
-        public void Draw() {
+        public override void Draw() {
 
             foreach (Sprite icon in icons) {
                 Program.GameWindow.Draw(icon);

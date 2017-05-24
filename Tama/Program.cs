@@ -36,6 +36,7 @@ namespace Tama
             menuWindow = new RenderWindow(new VideoMode(400, 650), "Tamagochi by_XLY");
             gameWindow = new RenderWindow(new VideoMode(800, 600), "Tamagochi by_XLY");
             settingsWindow = new RenderWindow(new VideoMode(400, 650), "Settings");
+
             menuWindow.SetVerticalSyncEnabled(true);
             gameWindow.SetVerticalSyncEnabled(true);
 

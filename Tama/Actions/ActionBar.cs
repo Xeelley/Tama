@@ -5,14 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tama.Parents;
 
 namespace Tama.Actions
 {
-    class ActionBar 
+    class ActionBar : GameBar
     {
-        Vector2f ACTION_BAR_POSITION = new Vector2f(280, 510);
+        private Vector2f ACTION_BAR_POSITION = new Vector2f(280, 510);
 
-        List<Button> actionButtons;
+        private List<Button> actionButtons;
 
         public ActionBar() {
             actionButtons = new List<Button>();
@@ -27,7 +28,7 @@ namespace Tama.Actions
             }
         }
 
-        public void Draw() {
+        public override void Draw() {
 
             foreach (Button button in actionButtons)
             {
@@ -37,13 +38,14 @@ namespace Tama.Actions
 
         private delegate void buttonEvent();
 
-        public void Click()
+        public override void Click()
         {
             if (CurrentCreature.creature.isAlive)
             {
 
-                List<buttonEvent> events = new List<buttonEvent>() { new buttonEvent(Feed), new buttonEvent(Walk), new buttonEvent(Sleep),
-                                                                 new buttonEvent(Wash), new buttonEvent(Special1), new buttonEvent(Special2)};
+                List<buttonEvent> events = new List<buttonEvent>() { new buttonEvent(Feed), new buttonEvent(Walk),
+                                                                     new buttonEvent(Sleep), new buttonEvent(Wash),
+                                                                     new buttonEvent(Special1), new buttonEvent(Special2)};
                 for (int i = 0; i < actionButtons.Count; i++)
                 {
                     if (actionButtons[i].isContainMouse(Program.GameWindow))
@@ -211,6 +213,7 @@ namespace Tama.Actions
                     };
             }
         }
+
         private void Special2() {
 
             Random rand = new Random();

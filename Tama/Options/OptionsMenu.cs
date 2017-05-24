@@ -97,6 +97,10 @@ namespace Tama.Options
 
         static public void NewGame()
         {
+            Program.Game.TotalScore = 0;
+            Program.Game.isGameOver = false;
+
+
             CurrentCreature.Begemoth.SetStats(120, 60, 70);
             CurrentCreature.Elephant.SetStats(110, 60, 70);
             CurrentCreature.Elk.SetStats(80, 100, 80);
@@ -105,8 +109,7 @@ namespace Tama.Options
             CurrentCreature.Pinguin.SetStats(100, 110, 90);
             CurrentCreature.Sheep.SetStats(80, 60, 120);
             CurrentCreature.Zebra.SetStats(100, 100, 100);
-
-            Program.Game.TotalScore = 0;
+            
         }
     }
 
@@ -116,6 +119,8 @@ namespace Tama.Options
 
         List<Button> buttons;
         Text soundText, gamesText, highScoreText;
+        Sprite GCN;
+
 
         public Settings() {
 
@@ -132,6 +137,9 @@ namespace Tama.Options
             soundText.Position = new SFML.System.Vector2f(50, 120);
             gamesText.Position = new SFML.System.Vector2f(80, 200);
             highScoreText.Position = new SFML.System.Vector2f(20, 250);
+
+            GCN = new Sprite(Content.GCN, new IntRect(0, 0, 200, 200));
+            GCN.Position = new SFML.System.Vector2f(100, 350);
         }
 
         delegate void buttonEvent(); 
@@ -165,6 +173,7 @@ namespace Tama.Options
             TARGET_WIN.Draw(soundText);
             TARGET_WIN.Draw(gamesText);
             TARGET_WIN.Draw(highScoreText);
+            TARGET_WIN.Draw(GCN);
 
         }
 
